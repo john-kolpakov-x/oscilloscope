@@ -58,21 +58,17 @@ public class OscilloscopeLauncher extends JPanel {
     });
   }
 
+  //private final ScreenDrawer screen = new ScreenDrawerSimple();
+  private final ScreenDrawer screen = new ScreenDrawerFastBuffer();
+  {
+    screen.setFunc(new FuncPulses());
+  }
+
   @Override
   public void paint(Graphics g) {
-    //super.paint(g);
-    paintG2((Graphics2D) g);
+    screen.setWidth(getWidth());
+    screen.setHeight(getHeight());
+    screen.paint((Graphics2D) g);
   }
 
-  private final Screen screen = new Screen();
-
-  {
-    screen.f = new FuncSinus();
-  }
-
-  private void paintG2(Graphics2D g) {
-    screen.width = getWidth();
-    screen.height = getHeight();
-    screen.paint(g);
-  }
 }

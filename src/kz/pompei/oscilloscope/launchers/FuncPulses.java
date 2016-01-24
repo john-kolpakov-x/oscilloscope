@@ -2,7 +2,7 @@ package kz.pompei.oscilloscope.launchers;
 
 import static java.lang.Math.*;
 
-public class FuncSinus implements Func {
+public class FuncPulses implements Func {
 
   final long createdAt = System.currentTimeMillis();
 
@@ -19,11 +19,11 @@ public class FuncSinus implements Func {
 
     final double DEG = PI / 180;
 
-    final double alpha = 85 * DEG;
+    final double alpha = 60 * DEG;
 
     double ret = 0;
     int sign = 1;
-    for (int n = 0; n < 300; n++) {
+    for (int n = 0; n < 60; n++) {
       //ret += sign * A * sin((2 * n + 1) * xx) / (2 * n + 1) / (2 * n + 1);
       //ret += sign * A * sin(n * xx) / n;
       //ret += sign * A * cos(n * xx) / n/n;
