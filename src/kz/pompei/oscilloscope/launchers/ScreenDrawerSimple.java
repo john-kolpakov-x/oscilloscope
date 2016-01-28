@@ -9,7 +9,7 @@ public class ScreenDrawerSimple implements ScreenDrawer {
   private Func func;
 
   @Override
-  public void setFunc(FuncPulses func) {
+  public void setFunc(Func func) {
     this.func = func;
   }
 

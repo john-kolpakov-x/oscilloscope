@@ -2,7 +2,7 @@ package kz.pompei.oscilloscope.launchers;
 
 import static java.lang.Math.*;
 
-public class FuncPulses implements Func {
+public class FuncTrapeze implements Func {
 
   final long createdAt = System.currentTimeMillis();
 
@@ -19,25 +19,22 @@ public class FuncPulses implements Func {
 
     double x = 2 * x_st + omega * timeSec;
 
-    double A = 4 / PI /2 ;
+    double A = 4 / PI / 2;
 
-    final double DEG = PI / 180;
-
-    final double alpha = 60 * DEG;
-
-    double ret = 0;
+    double w = 0;
     int sign = 1;
-    for (int n = 1; n < 60; n++) {
-      int k = 2 * n - 1;
+    for (int n = 1; n < 17; n++) {
+      int k1 = 2 * n;
+      int k2 = 2 * n - 1;
+      int k3 = 2 * n + 1;
 
-      ret += sign * sin(n * x) / n ;
-      //ret += sign * sin(k * x) / k / k;
-      //ret += sign * A * cos(n * x) / n/n;
-      //ret += cos(k * alpha) * sin(k * x) / k;
+      w += cos(k1 * x) / (k2 * k3);
 
       sign = -sign;
     }
 
-    return ret * A;
+    double res = 1 / PI + sin(x) / 2 - 2 * w / PI;
+
+    return res * A;
   }
 }

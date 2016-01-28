@@ -12,7 +12,7 @@ public class ScreenDrawerFastBuffer implements ScreenDrawer {
   private Func func;
 
   @Override
-  public void setFunc(FuncPulses func) {
+  public void setFunc(Func func) {
     this.func = func;
   }
 
@@ -29,7 +29,7 @@ public class ScreenDrawerFastBuffer implements ScreenDrawer {
   private final ViewPort port = new ViewPort();
 
   private int[] canvas = null;
-  BufferedImage image = null;
+  private BufferedImage image = null;
 
   final double gridDeltaX = 0.1, gridDeltaY = 0.1;
 
@@ -46,9 +46,9 @@ public class ScreenDrawerFastBuffer implements ScreenDrawer {
 
     g.setColor(Color.WHITE);
 
-    double h = 1.2;
+    double h = 0.7;
 
-    port.defineScreen(-PI, PI, -h, h, width, height);
+    port.defineScreen(-PI, PI, -0.1, h, width, height);
 
     final vec2 xy = new vec2();
     final vec2 XY = new vec2();
@@ -57,19 +57,15 @@ public class ScreenDrawerFastBuffer implements ScreenDrawer {
 
     double dx = (port.x2() - port.x1()) / width;
 
-    int N = 30;
+    int N = 50;
 
     for (int X = 0; X < width; X++) {
       port.cc.convertB(xy, X, 0);
-
       for (int i = 0; i < N; i++) {
-        xy.y = 4 * func.getValue(xy.x + i * dx / N);
-
+        xy.y = func.getValue(xy.x + i * dx / N);
         port.cc.convertA(XY, xy.x, xy.y);
-
         tryPutPixel(XY.X(), XY.Y(), graphRGB);
       }
-
     }
 
     putGrid();
@@ -84,7 +80,6 @@ public class ScreenDrawerFastBuffer implements ScreenDrawer {
   }
 
   private void putGrid() {
-    //int osRGB = Color.GRAY.brighter().getRGB();
     int osRGB = Color.WHITE.darker().getRGB();
     int grid1RGB = Color.GRAY.darker().getRGB();
     int grid2RGB = Color.GRAY.darker().darker().getRGB();
@@ -121,7 +116,6 @@ public class ScreenDrawerFastBuffer implements ScreenDrawer {
           else if (n % 5 == 0) rgb = grid2RGB;
         }
 
-
         port.cc.convertA(XY, x, 0);
         for (int Y = 0; Y < height; Y++) {
           int X = XY.X();
@@ -151,7 +145,6 @@ public class ScreenDrawerFastBuffer implements ScreenDrawer {
           else if (n % 5 == 0) rgb = grid2RGB;
         }
 
-
         port.cc.convertA(XY, 0, y);
         for (int X = 0; X < width; X++) {
           int Y = XY.Y();
@@ -162,14 +155,13 @@ public class ScreenDrawerFastBuffer implements ScreenDrawer {
         n++;
       }
     }
-
   }
 
   private void tryPutPixel(int X, int Y, int rgb) {
-    if (X < 0) X = 0;
-    if (X >= width) X = width - 1;
-    if (Y < 0) Y = 0;
-    if (Y >= height) Y = height - 1;
+    if (X < 0) return;
+    if (X >= width) return;
+    if (Y < 0) return;
+    if (Y >= height) return;
 
     int index = Y * width + X;
     if (canvas[index] == 0) canvas[index] = rgb;

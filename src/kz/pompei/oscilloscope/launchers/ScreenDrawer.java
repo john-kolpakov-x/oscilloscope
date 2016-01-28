@@ -5,7 +5,7 @@ import java.awt.*;
 public interface ScreenDrawer {
   void paint(Graphics2D g);
 
-  void setFunc(FuncPulses func);
+  void setFunc(Func func);
 
   void setWidth(int width);
 

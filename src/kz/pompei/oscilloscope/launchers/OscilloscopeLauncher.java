@@ -60,8 +60,10 @@ public class OscilloscopeLauncher extends JPanel {
 
   //private final ScreenDrawer screen = new ScreenDrawerSimple();
   private final ScreenDrawer screen = new ScreenDrawerFastBuffer();
+
   {
-    screen.setFunc(new FuncPulses());
+    //screen.setFunc(new FuncPulses());
+    screen.setFunc(new FuncTrapeze());
   }
 
   @Override
