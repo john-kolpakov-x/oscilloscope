@@ -2,11 +2,13 @@ group 'kz.pompei'
 version '0.0.1'
 
 buildscript {
+  ext.kotlin_version = '1.0.3'
   repositories {
     mavenCentral()
   }
   dependencies {
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.0-beta-4584"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.0"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
 }
 
@@ -22,7 +24,8 @@ repositories {
 }
 
 dependencies {
-  compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.0-beta-4584"
+  //compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.0-beta-4584"
+  compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: '1.0.3'
   compile 'org.codehaus.groovy:groovy-all:2.3.11'
 
   testCompile 'org.testng:testng:6.1.1'
@@ -30,6 +33,9 @@ dependencies {
 
   compile 'org.eclipse.jetty:jetty-server:9.3.7.v20160115'
   compile 'org.eclipse.jetty:jetty-webapp:9.3.7.v20160115'
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+  compile group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.13'
 
 }
 
@@ -37,3 +43,6 @@ sourceSets.main.java.srcDirs = ['src', 'src_resources']
 sourceSets.test.java.srcDirs = ['test_src', 'test_src_resources']
 sourceSets.main.resources.srcDirs = ['src', 'src_resources']
 sourceSets.test.resources.srcDirs = ['test_src', 'test_src_resources']
+sourceSets {
+  main.java.srcDirs += 'src/main/kotlin'
+}

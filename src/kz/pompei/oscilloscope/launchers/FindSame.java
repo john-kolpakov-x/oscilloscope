@@ -145,7 +145,6 @@ public class FindSame {
       IXY ixy = (IXY) o;
 
       return ix == ixy.ix && iy == ixy.iy;
-
     }
 
     @Override
@@ -211,13 +210,13 @@ public class FindSame {
   private static final int DOT_X_SPACING = 5, DOT_Y_SPACING = 5;
 
   private static final int CELL_WIDTH = DOT_X_PADDING + POINT_RADIUS
-    + (DOT_COLS - 1) * DOT_NODE_WIDTH
-    + POINT_RADIUS + DOT_X_PADDING
-    + DOT_X_SPACING;
+      + (DOT_COLS - 1) * DOT_NODE_WIDTH
+      + POINT_RADIUS + DOT_X_PADDING
+      + DOT_X_SPACING;
   private static final int CELL_HEIGHT = DOT_Y_PADDING + POINT_RADIUS
-    + (DOT_ROWS - 1) * DOT_NODE_HEIGHT
-    + POINT_RADIUS + DOT_Y_PADDING
-    + DOT_Y_SPACING;
+      + (DOT_ROWS - 1) * DOT_NODE_HEIGHT
+      + POINT_RADIUS + DOT_Y_PADDING
+      + DOT_Y_SPACING;
 
   private static final int WIDTH = CELL_WIDTH * CELL_COLS + 2 * LEFT_PADDING;
   private static final int HEIGHT = CELL_HEIGHT * CELL_ROWS + 2 * TOP_PADDING;
@@ -228,7 +227,7 @@ public class FindSame {
     int yDot = TOP_PADDING + CELL_HEIGHT * iy;
     g.setColor(style.bgColor);
     g.fillRoundRect(xDot, yDot, CELL_WIDTH - DOT_X_SPACING, CELL_HEIGHT - DOT_Y_SPACING,
-      POINT_RADIUS + DOT_X_PADDING, POINT_RADIUS + DOT_Y_PADDING);
+        POINT_RADIUS + DOT_X_PADDING, POINT_RADIUS + DOT_Y_PADDING);
 
     g.setColor(style.pointColor);
     for (int j = 0; j < DOT_ROWS; j++) {
