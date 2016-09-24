@@ -18,19 +18,14 @@ public class OscilloscopeLauncher extends JPanel {
     mainFrame.setContentPane(panel);
     mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-    SwingUtilities.invokeLater(() -> {
-      mainFrame.setVisible(true);
-    });
+    SwingUtilities.invokeLater(() -> mainFrame.setVisible(true));
 
     final Thread thread = new Thread(() -> {
 
       try {
         while (mainFrame.isVisible()) {
-
           Thread.sleep(10);
-
           SwingUtilities.invokeAndWait(panel::repaint);
-
         }
       } catch (InvocationTargetException | InterruptedException e) {
         throw new RuntimeException(e);
@@ -72,5 +67,4 @@ public class OscilloscopeLauncher extends JPanel {
     screen.setHeight(getHeight());
     screen.paint((Graphics2D) g);
   }
-
 }

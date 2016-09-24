@@ -14,5 +14,4 @@ public class BenchMarkProbe {
   public BigDecimal testingMethod() {
     return BigDecimal.TEN.multiply(BigDecimal.valueOf(longParam));
   }
-
 }
